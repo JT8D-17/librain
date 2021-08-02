@@ -22,8 +22,9 @@ CONFIG -= thread exceptions qt rtti release
 INCLUDEPATH += $$[LIBACFUTILS]/src
 INCLUDEPATH += $$[LIBACFUTILS]/SDK/CHeaders/XPLM
 INCLUDEPATH += $$[LIBACFUTILS]/SDK/CHeaders/Widgets
-INCLUDEPATH += $$[LIBACFUTILS]/glew
-INCLUDEPATH += $$[LIBACFUTILS]/cglm/cglm-0.4.1/include
+INCLUDEPATH += $$[LIBACFUTILS]/glew/glew-1.13.0-linux-64/include
+INCLUDEPATH += $$[LIBACFUTILS]/cglm/cglm-0.7.9/include
+# INCLUDEPATH += "/usr/include"
 QMAKE_CFLAGS += -std=c99 -O2 -g -W -Wall -Wextra -Werror -fvisibility=hidden
 QMAKE_CFLAGS += -Wunused-result
 
@@ -38,7 +39,7 @@ DEFINES += GL_GLEXT_PROTOTYPES
 DEFINES += PLUGIN_VERSION=\'\"$$system("git describe --abbrev=0 --tags")\"\'
 
 # Latest X-Plane APIs. No legacy support needed.
-DEFINES += XPLM200 XPLM210 XPLM300 XPLM310
+DEFINES += XPLM_DEPRECATED XPLM200 XPLM210 XPLM300 XPLM302 XPLM310
 
 TARGET = rain
 
@@ -55,6 +56,7 @@ win32:contains(CROSS_COMPILE, x86_64-w64-mingw32-) {
 	    --static-openal --cflags")
 
 	LIBS += -L$$[LIBACFUTILS]/qmake/win64 -lacfutils
+        LIBS += -L$$[LIBACFUTILS]/lzma/qmake/win-64 -lliblzma
 	LIBS += $$system("$$[LIBACFUTILS]/pkg-config-deps win-64 \
 	    --static-openal --libs")
 	LIBS += -L$$[LIBACFUTILS]/SDK/Libraries/Win -lXPLM_64
@@ -69,7 +71,10 @@ linux-g++-64 {
 	QMAKE_CFLAGS += -fno-stack-protector
 	QMAKE_CFLAGS += $$system("$$[LIBACFUTILS]/pkg-config-deps linux-64 \
 	    --static-openal --cflags")
+    #QMAKE_CXXFLAGS += -isystem $$[QT_INSTALL_HEADERS]
 	LIBS += -L$$[LIBACFUTILS]/qmake/lin64 -lacfutils
+        LIBS += -L$$[LIBACFUTILS]/lzma/qmake/linux-64 -lliblzma
+	LIBS += $$system("$$[LIBACFUTILS]/pkg-config-deps linux-64 --static-openal --libs")
 	LIBS += $$system("$$[LIBACFUTILS]/pkg-config-deps linux-64 \
 	    --static-openal --libs")
 }
