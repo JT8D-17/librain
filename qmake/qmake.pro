@@ -35,7 +35,6 @@ INCLUDEPATH += $$[LIBACFUTILS]/SDK/CHeaders/XPLM
 INCLUDEPATH += $$[LIBACFUTILS]/SDK/CHeaders/Widgets
 INCLUDEPATH += $$[LIBACFUTILS]/glew
 INCLUDEPATH += $$[LIBACFUTILS]/cglm/cglm-0.4.1/include
-INCLUDEPATH += "/usr/include"
 QMAKE_CFLAGS += -std=c99 -O2 -g -W -Wall -Wextra -Werror -fvisibility=hidden
 QMAKE_CFLAGS += -Wunused-result -Wno-missing-field-initializers
 

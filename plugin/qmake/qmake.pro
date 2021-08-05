@@ -22,9 +22,8 @@ CONFIG -= thread exceptions qt rtti release
 INCLUDEPATH += $$[LIBACFUTILS]/src
 INCLUDEPATH += $$[LIBACFUTILS]/SDK/CHeaders/XPLM
 INCLUDEPATH += $$[LIBACFUTILS]/SDK/CHeaders/Widgets
-INCLUDEPATH += $$[LIBACFUTILS]/glew/glew-1.13.0-linux-64/include
-INCLUDEPATH += $$[LIBACFUTILS]/cglm/cglm-0.7.9/include
-# INCLUDEPATH += "/usr/include"
+INCLUDEPATH += $$[LIBACFUTILS]/glew/glew-1.13.0-linux-64/include/
+INCLUDEPATH += $$[LIBACFUTILS]/cglm/cglm-0.4.1/include
 QMAKE_CFLAGS += -std=c99 -O2 -g -W -Wall -Wextra -Werror -fvisibility=hidden
 QMAKE_CFLAGS += -Wunused-result
 
@@ -33,13 +32,13 @@ QMAKE_CFLAGS += -Wunused-result
 # _FILE_OFFSET_BITS=64 to get 64-bit ftell and fseek on 32-bit platforms.
 # _USE_MATH_DEFINES - sometimes helps getting M_PI defined from system headers
 DEFINES += _GNU_SOURCE DEBUG _FILE_OFFSET_BITS=64
-DEFINES += GL_GLEXT_PROTOTYPES
+DEFINES += GL_GLEXT_PROTOTYPES GLEW_MX
 
 # Grab the latest tag as the version number for a release version.
 DEFINES += PLUGIN_VERSION=\'\"$$system("git describe --abbrev=0 --tags")\"\'
 
 # Latest X-Plane APIs. No legacy support needed.
-DEFINES += XPLM_DEPRECATED XPLM200 XPLM210 XPLM300 XPLM302 XPLM310
+DEFINES += XPLM200 XPLM210 XPLM300 XPLM301 XPLM302 XPLM_DEPRECATED
 
 TARGET = rain
 
@@ -54,9 +53,7 @@ win32 {
 win32:contains(CROSS_COMPILE, x86_64-w64-mingw32-) {
 	QMAKE_CFLAGS += $$system("$$[LIBACFUTILS]/pkg-config-deps win-64 \
 	    --static-openal --cflags")
-
 	LIBS += -L$$[LIBACFUTILS]/qmake/win64 -lacfutils
-        LIBS += -L$$[LIBACFUTILS]/lzma/qmake/win-64 -lliblzma
 	LIBS += $$system("$$[LIBACFUTILS]/pkg-config-deps win-64 \
 	    --static-openal --libs")
 	LIBS += -L$$[LIBACFUTILS]/SDK/Libraries/Win -lXPLM_64
@@ -71,10 +68,7 @@ linux-g++-64 {
 	QMAKE_CFLAGS += -fno-stack-protector
 	QMAKE_CFLAGS += $$system("$$[LIBACFUTILS]/pkg-config-deps linux-64 \
 	    --static-openal --cflags")
-    #QMAKE_CXXFLAGS += -isystem $$[QT_INSTALL_HEADERS]
 	LIBS += -L$$[LIBACFUTILS]/qmake/lin64 -lacfutils
-        LIBS += -L$$[LIBACFUTILS]/lzma/qmake/linux-64 -lliblzma
-	LIBS += $$system("$$[LIBACFUTILS]/pkg-config-deps linux-64 --static-openal --libs")
 	LIBS += $$system("$$[LIBACFUTILS]/pkg-config-deps linux-64 \
 	    --static-openal --libs")
 }
