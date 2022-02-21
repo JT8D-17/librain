@@ -12,6 +12,7 @@ No Mac support, sorry!**
 ## Requirements
 
 - A build of [libacfutils](https://github.com/JT8D-17/libacfutils) with the parent `libacf` folder located in the same folder as this `librain` folder. Other locations require editing `build_all`.
+- Packages: `mingw-w64-gcc`, `automake-1.15`, `gtk-doc`
 - AUR package: [spirv-cross](https://aur.archlinux.org/packages/spirv-cross/)
 
 &nbsp;
@@ -26,5 +27,5 @@ No Mac support, sorry!**
 ## Build tips
 
 - Run `build_all` to build the plugin version of librain
-- Libacfutils](https://github.com/JT8D-17/libacfutils) **must** be built before librain!
+- [Libacfutils](https://github.com/JT8D-17/libacfutils) **must** be built before librain!
 
