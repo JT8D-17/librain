@@ -36,7 +36,11 @@ DEFINES += _GNU_SOURCE DEBUG _FILE_OFFSET_BITS=64
 DEFINES += GL_GLEXT_PROTOTYPES
 
 # Grab the latest tag as the version number for a release version.
-DEFINES += PLUGIN_VERSION=\'\"$$system("git describe --abbrev=0 --tags")\"\'
+PLUGIN_STRING1=$$system("git describe --tags")
+#PLUGIN_STRING1=$$system("git describe --abbrev=0 --tags")
+#PLUGIN_STRING2=$$system("git rev-parse --short HEAD")
+#DEFINES += PLUGIN_VERSION=\'\"$${PLUGIN_STRING1}($${PLUGIN_STRING2})\"\'
+DEFINES += PLUGIN_VERSION=\'\"$${PLUGIN_STRING1}\"\'
 
 # Latest X-Plane APIs. No legacy support needed.
 DEFINES += XPLM_DEPRECATED XPLM200 XPLM302
