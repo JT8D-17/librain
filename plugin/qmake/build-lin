@@ -41,21 +41,7 @@ if [[ $(uname) = "Darwin" ]]; then
 	fi
 	mv librain.dylib "$OUTPUT/mac_x64/librain.plugin.xpl" || exit 1
 else
-	mkdir -p "$OUTPUT/win_x64" "$OUTPUT/lin_x64"
-	echo " "
-	echo "===> Starting librain compilation for WINDOWS"
-	echo " "
-	qmake -set CROSS_COMPILE x86_64-w64-mingw32-
-	qmake -spec win32-g++
-	make clean && make -j $NCPUS
-	if [ $? != 0 ] ; then
-		exit
-	fi
-	mv "$RELEASE/rain.dll" "$OUTPUT/win_x64/librain.plugin.xpl" || exit 1
-	cp "$LIBACFUTILS_PATH/deps_mingw64/bin/libpng16-16.dll" "$OUTPUT/win_x64"
-	cp "$LIBACFUTILS_PATH/deps_mingw64/bin/zlib1.dll" "$OUTPUT/win_x64"
-	echo " "
-	echo "===> Finished librain compilation for WINDOWS"
+	mkdir -p "$OUTPUT/lin_x64"
 	echo " "
 	echo "===> Starting librain compilation for LINUX"
 	echo " "

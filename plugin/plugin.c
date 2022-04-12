@@ -692,8 +692,7 @@ XPluginStop(void)
 PLUGIN_API int
 XPluginEnable(void)
 {
-	/* XPLMRegisterDrawCallback(draw_rain_effects, xplm_Phase_LastScene, */
-	XPLMRegisterDrawCallback(draw_rain_effects, xplm_Phase_Modern3D,
+	XPLMRegisterDrawCallback(draw_rain_effects, xplm_Phase_LastScene,
 	    0, NULL);
 	XPLMRegisterFlightLoopCallback(wiper_floop, -1, NULL);
 
@@ -703,8 +702,7 @@ XPluginEnable(void)
 PLUGIN_API void
 XPluginDisable(void)
 {
-	/* XPLMUnregisterDrawCallback(draw_rain_effects, xplm_Phase_LastScene, */
-	XPLMUnregisterDrawCallback(draw_rain_effects, xplm_Phase_Modern3D,
+	XPLMUnregisterDrawCallback(draw_rain_effects, xplm_Phase_LastScene,
 	    0, NULL);
 	XPLMUnregisterFlightLoopCallback(wiper_floop, NULL);
 }
